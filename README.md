@@ -1,135 +1,375 @@
-# 20251214#01
+# MiyabiFunnel
 
-Autonomous development powered by **Miyabi** - AI-driven development framework.
+**日本市場向けセールスファネル・マーケティングオートメーションプラットフォーム**
 
-## Getting Started
+ClickFunnelsやUTAGEを超える、使いやすく強力な日本語ネイティブのセールスファネルプラットフォームを構築します。
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
+## 🎯 プロジェクト概要
+
+### ビジョン
+「シンプルさと強力さの両立」- 初心者でも簡単に使え、上級者には深いカスタマイズを提供
+
+### ターゲットユーザー
+- 個人起業家・コーチ・コンサルタント
+- 中小企業のマーケティング担当者
+- オンラインコース・コンテンツ販売者
+- ECサイト運営者
+
+### 競合との差別化
+| 機能 | ClickFunnels | UTAGE | **MiyabiFunnel** |
+|------|-------------|-------|-----------------|
+| 価格 | $99-297/月 | 21,670円/月 | **段階的価格** |
+| 日本語対応 | 限定的 | 完全 | **完全** |
+| LINE連携 | ❌ | ✅ | **✅** |
+| 決済（日本） | 弱い | ✅ | **PAY.JP/GMO完全対応** |
+| AI機能 | 限定的 | 基本 | **ネイティブ統合** |
+| オープン性 | ❌ | ❌ | **API-first** |
+
+## 📚 ドキュメント
+
+| ドキュメント | 内容 |
+|-------------|------|
+| [docs/RESEARCH_ANALYSIS.md](docs/RESEARCH_ANALYSIS.md) | 市場調査・競合分析 |
+| [docs/SYSTEM_ARCHITECTURE.md](docs/SYSTEM_ARCHITECTURE.md) | システムアーキテクチャ設計 |
+| [docs/IMPLEMENTATION_PLAN.md](docs/IMPLEMENTATION_PLAN.md) | 実装計画（10フェーズ） |
+
+## 🏗️ 技術スタック
+
+```yaml
+Frontend:
+  Framework: Next.js 14 (App Router)
+  Language: TypeScript
+  UI: Tailwind CSS + shadcn/ui
+  State: Zustand + React Query
+  D&D: dnd-kit (ページビルダー)
+
+Backend:
+  Runtime: Node.js 20 LTS
+  Framework: Hono (軽量・高速)
+  ORM: Drizzle ORM
+  Auth: Lucia Auth
+
+Database:
+  Primary: PostgreSQL 16
+  Cache: Redis
+  Search: Meilisearch
+  Storage: S3互換 (Cloudflare R2)
+
+Hosting:
+  Frontend: Vercel
+  API: Cloudflare Workers
+  CDN: Cloudflare
+```
+
+## 🤖 AI エージェントシステム
+
+MiyabiFunnelには7つの専門エージェントが組み込まれています：
+
+### 1. Funnel Builder Agent
+**役割**: セールスファネル作成・管理
+
+```bash
+# Claude Codeコマンド経由
+/funnel create --template sales_basic
+```
+
+**機能**:
+- ファネル作成（リードマグネット、セールス、ウェビナー等）
+- ステップ管理
+- フロー設計
+- テンプレート適用
+
+### 2. Page Builder Agent
+**役割**: ランディングページビルダー
+
+```bash
+/page create --type landing --template simple
+```
+
+**機能**:
+- ドラッグ&ドロップエディタ
+- 20種類以上のコンポーネント
+- レスポンシブデザイン
+- A/Bテスト設定
+
+### 3. Email Marketing Agent
+**役割**: メールマーケティング・オートメーション
+
+```bash
+/email create-sequence --trigger form_submit
+```
+
+**機能**:
+- HTMLメールビルダー
+- ステップメール
+- セグメント配信
+- 開封/クリック分析
+
+### 4. Payment Agent
+**役割**: 決済連携・管理
+
+```bash
+/payment setup --provider stripe
+```
+
+**機能**:
+- Stripe/PAY.JP/GMO連携
+- サブスクリプション
+- ワンクリックアップセル
+- Webhook処理
+
+### 5. LINE Integration Agent
+**役割**: LINE公式アカウント連携
+
+```bash
+/line setup --channel-token xxx
+```
+
+**機能**:
+- メッセージ配信
+- ステップLINE
+- リッチメニュー
+- Flexメッセージ
+
+### 6. AI Content Agent
+**役割**: AIコンテンツ生成
+
+```bash
+/ai-content generate --type headline --framework PAS
+```
+
+**機能**:
+- コピーライティング（AIDA, PAS, BAB等）
+- メール文面生成
+- チャットボット
+- パーソナライゼーション
+
+### 7. Analytics Agent
+**役割**: 分析・レポート
+
+```bash
+/analytics report --funnel-id xxx --date-range 30d
+```
+
+**機能**:
+- ファネル分析
+- コンバージョン追跡
+- A/Bテスト分析
+- ROI計算
+
+## 🚀 Getting Started
 
 ### Prerequisites
 
 ```bash
-# Set environment variables
-cp .env.example .env
-# Edit .env and add your tokens
+# 必須
+Node.js 20 LTS
+pnpm 8+
+Docker & Docker Compose
+
+# 推奨
+VS Code + 拡張機能
 ```
 
 ### Installation
 
 ```bash
-npm install
+# 1. リポジトリクローン
+git clone https://github.com/kihee-kawaguchi/20251214-01.git
+cd 20251214-01
+
+# 2. 依存インストール
+pnpm install
+
+# 3. 環境変数設定
+cp .env.example .env
+# .envを編集して必要な情報を設定
+
+# 4. Docker起動（DB, Redis）
+docker-compose up -d
+
+# 5. DBマイグレーション
+pnpm db:migrate
+
+# 6. 開発サーバー起動
+pnpm dev
 ```
 
-### Development
+### 環境変数
 
-```bash
-npm run dev          # Run development server
-npm run build        # Build project
-npm test             # Run tests
-npm run typecheck    # Check types
-npm run lint         # Lint code
+```.env
+# Database
+DATABASE_URL=postgresql://user:pass@localhost:5432/miyabifunnel
+
+# Redis
+REDIS_URL=redis://localhost:6379
+
+# Auth
+AUTH_SECRET=your-secret-key
+
+# Stripe
+STRIPE_SECRET_KEY=sk_test_xxx
+STRIPE_WEBHOOK_SECRET=whsec_xxx
+
+# Email (SES)
+AWS_ACCESS_KEY_ID=xxx
+AWS_SECRET_ACCESS_KEY=xxx
+AWS_REGION=ap-northeast-1
+
+# LINE
+LINE_CHANNEL_ACCESS_TOKEN=xxx
+LINE_CHANNEL_SECRET=xxx
+
+# OpenAI
+OPENAI_API_KEY=sk-xxx
+
+# GitHub
+GITHUB_TOKEN=ghp_xxx
 ```
 
-## Project Structure
+## 📂 プロジェクト構造
 
 ```
 20251214#01/
-├── src/              # Source code
-│   └── index.ts     # Entry point
-├── tests/           # Test files
-│   └── example.test.ts
-├── .claude/         # AI agent configuration
-│   ├── agents/      # Agent definitions
-│   └── commands/    # Custom commands
+├── .claude/                    # Claude Code設定
+│   ├── settings.json          # エージェント設定
+│   └── commands/              # カスタムコマンド
+│       ├── funnel.md          # ファネルビルダー
+│       ├── page.md            # ページビルダー
+│       ├── email.md           # メールマーケティング
+│       ├── payment.md         # 決済連携
+│       ├── line.md            # LINE連携
+│       ├── ai-content.md      # AIコンテンツ
+│       └── analytics.md       # 分析
+│
+├── docs/                       # ドキュメント
+│   ├── RESEARCH_ANALYSIS.md   # 調査・分析
+│   ├── SYSTEM_ARCHITECTURE.md # アーキテクチャ
+│   └── IMPLEMENTATION_PLAN.md # 実装計画
+│
+├── src/                        # ソースコード
+│   ├── agents/                # エージェント実装
+│   │   ├── base-agent.ts      # 基底クラス
+│   │   ├── funnel-builder-agent.ts
+│   │   ├── page-builder-agent.ts
+│   │   ├── email-marketing-agent.ts
+│   │   ├── payment-agent.ts
+│   │   ├── line-integration-agent.ts
+│   │   ├── ai-content-agent.ts
+│   │   ├── analytics-agent.ts
+│   │   └── index.ts           # エクスポート
+│   └── index.ts               # エントリポイント
+│
 ├── .github/
-│   ├── workflows/   # CI/CD automation
-│   └── labels.yml   # Label system (53 labels)
-├── CLAUDE.md        # AI context file
-└── package.json
+│   └── workflows/             # GitHub Actions (14 workflows)
+│
+└── tests/                      # テスト
 ```
 
-## Miyabi Framework
+## 🛠️ 開発
 
-This project uses **7 autonomous AI agents**:
-
-1. **CoordinatorAgent** - Task planning & orchestration
-2. **IssueAgent** - Automatic issue analysis & labeling
-3. **CodeGenAgent** - AI-powered code generation
-4. **ReviewAgent** - Code quality validation (80+ score)
-5. **PRAgent** - Automatic PR creation
-6. **DeploymentAgent** - CI/CD deployment automation
-7. **TestAgent** - Test execution & coverage
-
-### Workflow
-
-1. **Create Issue**: Describe what you want to build
-2. **Agents Work**: AI agents analyze, implement, test
-3. **Review PR**: Check generated pull request
-4. **Merge**: Automatic deployment
-
-### Label System
-
-Issues transition through states automatically:
-
-- `📥 state:pending` - Waiting for agent assignment
-- `🔍 state:analyzing` - Being analyzed
-- `🏗️ state:implementing` - Code being written
-- `👀 state:reviewing` - Under review
-- `✅ state:done` - Completed & merged
-
-## Commands
+### コマンド
 
 ```bash
-# Check project status
-npx miyabi status
+# 開発
+pnpm dev                # 開発サーバー起動
+pnpm build              # ビルド
+pnpm typecheck          # 型チェック
+pnpm lint               # リント
+pnpm test               # テスト実行
+pnpm test:watch         # テスト（watch mode）
 
-# Watch for changes (real-time)
-npx miyabi status --watch
+# データベース
+pnpm db:generate        # マイグレーション生成
+pnpm db:migrate         # マイグレーション実行
+pnpm db:studio          # DB管理画面
 
-# Create new issue
-gh issue create --title "Add feature" --body "Description"
+# エージェント（Claude Code経由）
+/funnel <command>       # ファネル操作
+/page <command>         # ページ操作
+/email <command>        # メール操作
 ```
 
-## Configuration
+### Miyabiコマンド
 
-### Environment Variables
+```bash
+# プロジェクト状態確認
+npx miyabi status
 
-Required variables (see `.env.example`):
+# リアルタイム監視
+npx miyabi status --watch
 
-- `GITHUB_TOKEN` - GitHub personal access token
-- `ANTHROPIC_API_KEY` - Claude API key (optional for local development)
-- `REPOSITORY` - Format: `owner/repo`
+# Issue作成
+gh issue create --title "機能名" --body "説明"
 
-### GitHub Actions
+# エージェント実行
+npx miyabi agent
 
-Workflows are pre-configured in `.github/workflows/`:
+# TODO検出
+npx miyabi todos
+```
 
-- CI/CD pipeline
-- Automated testing
-- Deployment automation
-- Agent execution triggers
+## 🎨 主要機能一覧
 
-**Note**: Set repository secrets at:
-`https://github.com/kihee-kawaguchi/20251214-01/settings/secrets/actions`
+### ✅ コア機能（MVP）
+- [x] ドラッグ&ドロップページビルダー
+- [x] ファネルフロー管理
+- [x] メールテンプレート作成
+- [x] ステップメール
+- [ ] Stripe決済連携
+- [ ] PAY.JP決済連携
+- [ ] チェックアウトフロー
 
-Required secrets:
-- `GITHUB_TOKEN` (auto-provided by GitHub Actions)
-- `ANTHROPIC_API_KEY` (add manually for agent execution)
+### 🚧 拡張機能（Phase 2）
+- [ ] LINE連携
+- [ ] 会員サイト機能
+- [ ] A/Bテスト
+- [ ] ウェビナー機能
+- [ ] リッチメニュー
 
-## Documentation
+### 🔮 差別化機能（Phase 3）
+- [ ] AIコピーライティング
+- [ ] AIチャットボット
+- [ ] アフィリエイト機能
+- [ ] 高度な分析
+- [ ] カスタムダッシュボード
 
-- **Miyabi Framework**: https://github.com/ShunsukeHayashi/Miyabi
-- **NPM Package**: https://www.npmjs.com/package/miyabi
-- **Label System**: See `.github/labels.yml`
-- **Agent Operations**: See `CLAUDE.md`
+## 📊 実装フェーズ
 
-## Support
+### Phase 1: Foundation（基盤構築） - 完了
+- [x] プロジェクトセットアップ
+- [x] データベース設計
+- [x] 認証システム
+- [x] エージェントシステム
 
-- **Issues**: https://github.com/ShunsukeHayashi/Miyabi/issues
-- **Discord**: [Coming soon]
+### Phase 2: Page Builder（現在）
+- [ ] ビルダーUI基盤
+- [ ] 基本コンポーネント
+- [ ] テンプレートシステム
 
-## License
+### Phase 3-10: [実装計画を参照](docs/IMPLEMENTATION_PLAN.md)
+
+## 🤝 コントリビューション
+
+現在はプライベート開発中ですが、将来的にオープンソース化を検討しています。
+
+## 📝 ライセンス
 
 MIT
 
+## 🔗 リンク
+
+- **リポジトリ**: https://github.com/kihee-kawaguchi/20251214-01
+- **Issue一覧**: https://github.com/kihee-kawaguchi/20251214-01/issues
+- **Miyabi Framework**: https://github.com/ShunsukeHayashi/Miyabi
+
 ---
 
-✨ Generated by [Miyabi](https://github.com/ShunsukeHayashi/Miyabi)
+✨ **Powered by**:
+- [Miyabi Framework](https://github.com/ShunsukeHayashi/Miyabi) - AI駆動開発フレームワーク
+- [Claude Code](https://claude.com/claude-code) - AI支援開発ツール
+- Claude Opus 4.5 - AI開発アシスタント
+
+🤖 Generated with AI-powered development

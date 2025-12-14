@@ -1,0 +1,68 @@
+{
+  "project": {
+    "name": "MiyabiFunnel",
+    "description": "日本市場向けセールスファネル・マーケティングオートメーションプラットフォーム",
+    "version": "0.1.0"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(npm:*)",
+      "Bash(pnpm:*)",
+      "Bash(node:*)",
+      "Bash(npx:*)",
+      "Bash(git:*)",
+      "Bash(gh:*)",
+      "Bash(docker:*)",
+      "Bash(docker-compose:*)",
+      "Bash(curl:*)",
+      "Bash(mkdir:*)",
+      "Bash(ls:*)",
+      "Bash(tree:*)",
+      "Bash(cat:*)",
+      "Bash(echo:*)",
+      "Bash(cd:*)",
+      "Bash(pwd:*)",
+      "Bash(rm:*)",
+      "Bash(mv:*)",
+      "Bash(cp:*)",
+      "Read",
+      "Write",
+      "Edit",
+      "Glob",
+      "Grep",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "deny": []
+  },
+  "agents": {
+    "funnel-builder": {
+      "description": "ファネル作成・管理エージェント",
+      "tools": ["Read", "Write", "Edit", "Bash", "Glob", "Grep"]
+    },
+    "page-builder": {
+      "description": "ランディングページビルダーエージェント",
+      "tools": ["Read", "Write", "Edit", "Bash", "Glob", "Grep"]
+    },
+    "email-marketing": {
+      "description": "メールマーケティング・オートメーションエージェント",
+      "tools": ["Read", "Write", "Edit", "Bash", "WebFetch"]
+    },
+    "payment": {
+      "description": "決済連携・管理エージェント",
+      "tools": ["Read", "Write", "Edit", "Bash", "WebFetch"]
+    },
+    "line-integration": {
+      "description": "LINE Messaging API連携エージェント",
+      "tools": ["Read", "Write", "Edit", "Bash", "WebFetch"]
+    },
+    "ai-content": {
+      "description": "AIコンテンツ生成エージェント",
+      "tools": ["Read", "Write", "Edit", "WebFetch", "WebSearch"]
+    },
+    "analytics": {
+      "description": "分析・レポートエージェント",
+      "tools": ["Read", "Glob", "Grep", "Bash"]
+    }
+  }
+}
